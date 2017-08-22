@@ -10,11 +10,30 @@ $sessionArr = $imageDragAuth->generator();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>图片拖动验证</title>
+<link rel="stylesheet" href="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.css" />
+<style>
+* {border:0;outline:0;margin:0;padding:0;}
+html {width:100%;height:100%;overflow:hidden;background: #ededed;}
+body {width:100%;height:100%;font-size:14px;font-family:"微软雅黑",STHeiti,Arial;text-align:center;background: #ededed;}
+.sessionxy {}
+.dragHolder {position: relative;    width: 868px;    height: 390px;    overflow: hidden;}
+.dragHolder .dragBar {position: absolute;background:transparent;border:none;top:0;left:0;}
+</style>
 </head>
 <body>
-    <script src=”http://libs.baidu.com/jquery/1.11.1/jquery.min.js”></script>
-    <div class="">x:<?php echo $sessionArr['x'] ?><br />y:<?php echo $sessionArr['y'] ?></div>
-    <img src="big.php?<?php echo http_build_query($sessionArr)?>" style="display: block;clear:both;" />
-    <img src="small.php?<?php echo http_build_query($sessionArr)?>" style="display: block;clear:both;" />
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+    $( function() {
+    	$( "#draggable" ).draggable();
+    } );
+    </script>
+    <div class="sessionxy">x:<?php echo $sessionArr['x'] ?><br />y:<?php echo $sessionArr['y'] ?></div>
+    <div class="dragHolder">
+    	<img class="bgimg" src="big.php?<?php echo http_build_query($sessionArr)?>" style="display: block;clear:both;" />
+    	<div id="draggable" class="dragBar ui-widget-content">
+    		<img src="small.php?<?php echo http_build_query($sessionArr)?>" style="display: block; overflow:hidden;" />
+    	</div>
+    </div>
 </body>
 </html>
