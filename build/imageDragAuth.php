@@ -118,8 +118,7 @@ class imageDragAuth
         $background = imagecreatetruecolor($bgX,$bgY);
         
         imagecopy($background, $this->backgroundImgSrc, 0, 0, 0, 0, $bgX, $bgY);
-        
-        imagecopy($background, transparentImgSrc, 0, 0, $x, $y, $smX, $smY);
+        imagecopy($background, $this->transparentImgSrc, $x, $y, 0, 0, $smX, $smY);
         
         $imgCrop = imagecrop($background, array('x' => $x,'y' => $y, 'width' => $smX, 'height' => $smY));
         
