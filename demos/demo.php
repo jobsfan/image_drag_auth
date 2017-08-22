@@ -28,7 +28,12 @@ body {width:100%;height:100%;font-size:14px;font-family:"微软雅黑",STHeiti,A
     	$( "#draggable" ).draggable({
     		stop: function() {
             	$.getJSON('valid.php?x='+parseInt($( "#draggable" ).css("left"))+'&y='+parseInt($( "#draggable" ).css("top")),function(result){
-                	alert(result['msg']);
+                	setTimeout(function(){alert(result['msg']);},100);
+                	if (!result['status']){
+                    	$(".bgimg").attr("src","big.php?r="+Math.random());
+                    	$(".dragImg").attr("src","small.php?r="+Math.random());
+                    	$("#draggable").css({"top":"0px","left":"0px"});
+                	}
             	});
             }
     	});
@@ -36,9 +41,9 @@ body {width:100%;height:100%;font-size:14px;font-family:"微软雅黑",STHeiti,A
     </script>
     <div class="sessionxy">x:<?php echo $sessionArr['x'] ?><br />y:<?php echo $sessionArr['y'] ?></div>
     <div class="dragHolder">
-    	<img class="bgimg" src="big.php?<?php echo http_build_query($sessionArr)?>" style="display: block;clear:both;" />
+    	<img class="bgimg" src="big.php" style="display: block;clear:both;" />
     	<div id="draggable" class="dragBar ui-widget-content">
-    		<img src="small.php?<?php echo http_build_query($sessionArr)?>" style="display: block; overflow:hidden;" />
+    		<img class="dragImg" src="small.php" style="display: block; overflow:hidden;" />
     	</div>
     </div>
 </body>

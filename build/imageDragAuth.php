@@ -64,11 +64,12 @@ class imageDragAuth
     * @param $x 用户通过ajax提交上来的x坐标值
     * @param $y 用户通过ajax提交上来的y坐标值
     * @param $threshold 容错阈值
+    * @param $stepSession 分步验证时候往session记录的session名
     * @return boolean
     * @author Jobs Fan
     * @date: 下午3:39:37
     */
-    public function validation($x,$y,$threshold=4)
+    public function validation($x,$y,$threshold=4,$stepSession = null)
     {
         $x = (int) $x;
         $y = (int) $y;
@@ -82,7 +83,14 @@ class imageDragAuth
         {
             $_SESSION[$this->sessionXname] = rand(0,100000);
             $_SESSION[$this->sessionYname] = rand(0,100000);
+            if ($stepSession) $_SESSION[$stepSession] = true; //用户后面步骤的验证
             return true;
+        }
+        else 
+        {
+            $_SESSION[$this->sessionXname] = rand(0,100000);
+            $_SESSION[$this->sessionYname] = rand(0,100000);
+            return false;
         }
     }
     
@@ -94,17 +102,19 @@ class imageDragAuth
     * @author Jobs Fan
     * @date: 下午4:08:56
     */
-    public function createBgImg($x, $y)
+    public function createBgImg()
     {
         header('Content-type: image/png');
         
         $bgX = imagesx($this->backgroundImgSrc);
         $bgY = imagesy($this->backgroundImgSrc);
+        $smX = imagesx($this->fillImgSrc);
+        $smY = imagesy($this->fillImgSrc);
         
         $background = imagecreatetruecolor($bgX,$bgY);
         imagecopy($background, $this->backgroundImgSrc, 0, 0, 0, 0, 868, 390);
         
-        imagecopy($background, $this->fillImgSrc, $x, $y, 0, 0, 149, 149);
+        imagecopy($background, $this->fillImgSrc, (int)($_SESSION[$this->sessionXname]), (int)($_SESSION[$this->sessionYname]), 0, 0, $smX, $smY);
         imagepng($background);
         imagedestroy($background);
     }
@@ -117,7 +127,7 @@ class imageDragAuth
     * @author Jobs Fan
     * @date: 下午4:15:25
     */
-    public function createDragbleImg($x, $y)
+    public function createDragbleImg()
     {
         header('Content-type: image/png');
         
@@ -129,9 +139,9 @@ class imageDragAuth
         $background = imagecreatetruecolor($bgX,$bgY);
         
         imagecopy($background, $this->backgroundImgSrc, 0, 0, 0, 0, $bgX, $bgY);
-        imagecopy($background, $this->transparentImgSrc, $x, $y, 0, 0, $smX, $smY);
+        imagecopy($background, $this->transparentImgSrc, (int)($_SESSION[$this->sessionXname]), (int)($_SESSION[$this->sessionYname]), 0, 0, $smX, $smY);
         
-        $imgCrop = imagecrop($background, array('x' => $x,'y' => $y, 'width' => $smX, 'height' => $smY));
+        $imgCrop = imagecrop($background, array('x' => (int)($_SESSION[$this->sessionXname]),'y' => (int)($_SESSION[$this->sessionYname]), 'width' => $smX, 'height' => $smY));
         
         imagecolortransparent($imgCrop,$this->colorTransparentInt);
         imagepng($imgCrop);
