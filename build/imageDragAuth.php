@@ -3,6 +3,7 @@
 * @author: Jobs Fan 289047960@qq.com
 * @copyright 2012-2017 Jobs Fan
 */
+session_start();
 class imageDragAuth
 {
     public $backgroundImgSrc;
@@ -23,12 +24,15 @@ class imageDragAuth
     * @author Jobs Fan
     * @date: 下午3:17:54
     */
-    public function __construct($backgroundImgSrc,$fillImgSrc,$transparentImgSrc,$colorTransparentInt)
+    public function __construct($backgroundImgSrc,$fillImgSrc,$transparentImgSrc,$colorTransparentInt,$sessionXname = 'imageDragAuthX',$sessionYname='imageDragAuthY')
     {
         $this->backgroundImgSrc = $backgroundImgSrc;
         $this->fillImgSrc = $fillImgSrc;
         $this->transparentImgSrc = $transparentImgSrc;
         $this->colorTransparentInt = $colorTransparentInt;
+        
+        $this->sessionXname = $sessionXname;
+        $this->sessionYname = $sessionYname;
     }
     
     /**
@@ -39,7 +43,7 @@ class imageDragAuth
     * @author Jobs Fan
     * @date: 下午3:25:20
     */
-    public function generator($sessionXname = 'imageDragAuthX',$sessionYname='imageDragAuthY')
+    public function generator()
     {
         $bgX = imagesx($this->backgroundImgSrc);
         $bgY = imagesy($this->backgroundImgSrc);
@@ -49,11 +53,8 @@ class imageDragAuth
         $randX = rand(5,($bgX - $smX -5));
         $randY = rand(5,($bgY - $smY - 5));
         
-        $this->sessionXname = $sessionXname;
-        $this->sessionYname = $sessionYname;
-        
-        $_SESSION[$sessionXname] = $randX;
-        $_SESSION[$sessionYname] = $randY;
+        $_SESSION[$this->sessionXname] = $randX;
+        $_SESSION[$this->sessionYname] = $randY;
         
         return array('x' => $randX,'y' => $randY); //5是边距，如果0，0就不需要移动了
     }
@@ -71,8 +72,18 @@ class imageDragAuth
     {
         $x = (int) $x;
         $y = (int) $y;
-        if (!$x || !$y || !isset($_SESSION[$this->sessionXname]) || !isset($_SESSION[$this->sessionYname])) return false;
-        return $x >= $_SESSION[$this->sessionXname] - $threshold && $x <= $_SESSION[$this->sessionXname] + $threshold && $y >= $_SESSION[$this->sessionYname] - $threshold && $y <= $_SESSION[$this->sessionYname] + $threshold;
+        if (!$x || !$y || !isset($_SESSION[$this->sessionXname]) || !isset($_SESSION[$this->sessionYname]))
+        {
+            $_SESSION[$this->sessionXname] = rand(0,100000);
+            $_SESSION[$this->sessionYname] = rand(0,100000);
+            return false;
+        }
+        if ($x >= $_SESSION[$this->sessionXname] - $threshold && $x <= $_SESSION[$this->sessionXname] + $threshold && $y >= $_SESSION[$this->sessionYname] - $threshold && $y <= $_SESSION[$this->sessionYname] + $threshold)
+        {
+            $_SESSION[$this->sessionXname] = rand(0,100000);
+            $_SESSION[$this->sessionYname] = rand(0,100000);
+            return true;
+        }
     }
     
     /**

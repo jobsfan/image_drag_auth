@@ -17,7 +17,7 @@ html {width:100%;height:100%;overflow:hidden;background: #ededed;}
 body {width:100%;height:100%;font-size:14px;font-family:"微软雅黑",STHeiti,Arial;text-align:center;background: #ededed;}
 .sessionxy {}
 .dragHolder {position: relative;    width: 868px;    height: 390px;    overflow: hidden;}
-.dragHolder .dragBar {position: absolute;background:transparent;border:none;top:0;left:0;}
+.dragHolder .dragBar {position: absolute;width:149px;height:149px;overflow: hidden;background:transparent;border:none;top:0;left:0;}
 </style>
 </head>
 <body>
@@ -25,7 +25,13 @@ body {width:100%;height:100%;font-size:14px;font-family:"微软雅黑",STHeiti,A
     <script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script>
     $( function() {
-    	$( "#draggable" ).draggable();
+    	$( "#draggable" ).draggable({
+    		stop: function() {
+            	$.getJSON('valid.php?x='+parseInt($( "#draggable" ).css("left"))+'&y='+parseInt($( "#draggable" ).css("top")),function(result){
+                	alert(result['msg']);
+            	});
+            }
+    	});
     } );
     </script>
     <div class="sessionxy">x:<?php echo $sessionArr['x'] ?><br />y:<?php echo $sessionArr['y'] ?></div>
