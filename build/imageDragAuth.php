@@ -20,6 +20,8 @@ class imageDragAuth
     * @param $fillImgSrc 填充图[和镂空透明图形状大小一样，不过是反的，一个填充，一个镂空]的resource，来自imagecreatefrompng
     * @param $transparentImgSrc 镂空图[和填充图形状大小一样，不过是反的，一个填充，一个镂空]的resource，来自imagecreatefrompng
     * @param $colorTransparentInt 10进制整数，要替换的颜色的数值
+    * @param $sessionXname 储存x坐标的session的名字
+    * @param $sessionYname 储存y坐标的session的名字
     * @return what return
     * @author Jobs Fan
     * @date: 下午3:17:54
@@ -37,8 +39,6 @@ class imageDragAuth
     
     /**
     * 生成验证码，其实就是生成x坐标和y坐标，原理是一样的都存在服务器端的session里面
-    * @param $sessionXname 储存x坐标的session的名字
-    * @param $sessionYname 储存y坐标的session的名字
     * @return what return
     * @author Jobs Fan
     * @date: 下午3:25:20
