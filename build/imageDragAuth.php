@@ -55,8 +55,6 @@ class imageDragAuth
         
         $_SESSION[$this->sessionXname] = $randX;
         $_SESSION[$this->sessionYname] = $randY;
-        
-        return array('x' => $randX,'y' => $randY); //5是边距，如果0，0就不需要移动了
     }
     
     /** 
@@ -75,21 +73,18 @@ class imageDragAuth
         $y = (int) $y;
         if (!$x || !$y || !isset($_SESSION[$this->sessionXname]) || !isset($_SESSION[$this->sessionYname]))
         {
-            $_SESSION[$this->sessionXname] = rand(0,100000);
-            $_SESSION[$this->sessionYname] = rand(0,100000);
+            $this->generator();
             return false;
         }
         if ($x >= $_SESSION[$this->sessionXname] - $threshold && $x <= $_SESSION[$this->sessionXname] + $threshold && $y >= $_SESSION[$this->sessionYname] - $threshold && $y <= $_SESSION[$this->sessionYname] + $threshold)
         {
-            $_SESSION[$this->sessionXname] = rand(0,100000);
-            $_SESSION[$this->sessionYname] = rand(0,100000);
+            $this->generator();
             if ($stepSession) $_SESSION[$stepSession] = true; //用户后面步骤的验证
             return true;
         }
         else 
         {
-            $_SESSION[$this->sessionXname] = rand(0,100000);
-            $_SESSION[$this->sessionYname] = rand(0,100000);
+            $this->generator();
             return false;
         }
     }

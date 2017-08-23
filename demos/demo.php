@@ -2,7 +2,7 @@
 require dirname(__DIR__).'/build/imageDragAuth.php';
 
 $imageDragAuth = new imageDragAuth(imagecreatefromjpeg('images/1.jpg'), imagecreatefrompng('images/3.png'), imagecreatefrompng('images/2.png'), 65280);
-$sessionArr = $imageDragAuth->generator();
+$imageDragAuth->generator();
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -39,7 +39,7 @@ body {width:100%;height:100%;font-size:14px;font-family:"微软雅黑",STHeiti,A
     	});
     } );
     </script>
-    <div class="sessionxy">x:<?php echo $sessionArr['x'] ?><br />y:<?php echo $sessionArr['y'] ?></div>
+    <div class="sessionxy">x:<?php echo $_SESSION['imageDragAuthX'] ?><br />y:<?php echo $_SESSION['imageDragAuthY'] ?></div>
     <div class="dragHolder">
     	<img class="bgimg" src="big.php" style="display: block;clear:both;" />
     	<div id="draggable" class="dragBar ui-widget-content">
