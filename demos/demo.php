@@ -18,7 +18,7 @@ html {width:100%;height:100%;overflow:hidden;background: #ededed;}
 body {width:100%;height:100%;font-size:14px;font-family:"微软雅黑",STHeiti,Arial;text-align:center;background: #ededed;}
 .someInsctruction {height:30px;line-height:30px;clear:both;overflow:hidden;font-size:22px;font-weight:bold;}
 .sessionxy {}
-.dragHolder {position: relative;    width: 868px;    height: 390px;    overflow: hidden;}
+.dragHolder {position: relative;    width: 868px;    height: 390px;   margin: 10px auto;   overflow: hidden;}
 .dragHolder .dragBar {position: absolute;width:149px;height:149px;overflow: hidden;background:transparent;border:none;top:0;left:0;}
 </style>
 </head>

@@ -39,11 +39,12 @@ class imageDragAuth
     
     /**
     * 生成验证码，其实就是生成x坐标和y坐标，原理是一样的都存在服务器端的session里面
+    * @param $stepSession 分步验证时候往session记录的session名
     * @return what return
     * @author Jobs Fan
     * @date: 下午3:25:20
     */
-    public function generator()
+    public function generator($stepSession = 'setpSession')
     {
         $bgX = imagesx($this->backgroundImgSrc);
         $bgY = imagesy($this->backgroundImgSrc);
@@ -55,6 +56,7 @@ class imageDragAuth
         
         $_SESSION[$this->sessionXname] = $randX;
         $_SESSION[$this->sessionYname] = $randY;
+        $_SESSION[$stepSession] = false;
     }
     
     /** 
@@ -67,7 +69,7 @@ class imageDragAuth
     * @author Jobs Fan
     * @date: 下午3:39:37
     */
-    public function validation($x,$y,$threshold=4,$stepSession = null)
+    public function validation($x,$y,$threshold=4,$stepSession = 'setpSession')
     {
         $x = (int) $x;
         $y = (int) $y;
@@ -79,7 +81,7 @@ class imageDragAuth
         if ($x >= $_SESSION[$this->sessionXname] - $threshold && $x <= $_SESSION[$this->sessionXname] + $threshold && $y >= $_SESSION[$this->sessionYname] - $threshold && $y <= $_SESSION[$this->sessionYname] + $threshold)
         {
             $this->generator();
-            if ($stepSession) $_SESSION[$stepSession] = true; //用户后面步骤的验证
+            $_SESSION[$stepSession] = true; //用户后面步骤的验证
             return true;
         }
         else 

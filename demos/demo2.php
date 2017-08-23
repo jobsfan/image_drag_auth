@@ -22,8 +22,8 @@ body {width:100%;height:100%;font-size:14px;font-family:"微软雅黑",STHeiti,A
 .imgDragAuthHolder .reflectStage {position: relative;    width: 868px;    height: 390px;    clear: both;    overflow: hidden;}
 .imgDragAuthHolder .reflectStage .bgimg {display: block;    width: 868px;}
 .imgDragAuthHolder .reflectStage .reflectimg {position: absolute;    display: block;    width: 149px;    height: 149px;    overflow: hidden;    left: 0;}
-.imgDragAuthHolder .dragBarHolder {position: relative;    width: 868px;    height: 42px;    margin: 10px auto;    border: 1px solid #cccccc;}
-.imgDragAuthHolder .dragBarHolder #draggable {width: 40px;    height: 40px;    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAANCAYAAACgu+4kAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABkSURBVDhPYyAGZGYUbcjKLFoA5ZIOsrJKDIAGfBiuhmRmFgVkZhY3kITBgVr8H2wImJNRfIAUDDTkAsgAoN7zYFeQAvLz8wVABoA0g9hQYeLAENUMAkCNG8jWDAKgqMaumYEBAB5ve4AwYBoCAAAAAElFTkSuQmCC") center center no-repeat;    cursor: pointer;}
+.imgDragAuthHolder .dragBarHolder {position: relative;    width: 868px;    height: 40px;    margin: 10px auto;    border: 1px solid #cccccc;}
+.imgDragAuthHolder .dragBarHolder #draggable {position: absolute; width: 40px;    height: 40px;  overflow: hidden; border:none; border-left: 1px solid #cccccc; border-right: 1px solid #cccccc;   top:0; left:0;    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAANCAYAAACgu+4kAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABkSURBVDhPYyAGZGYUbcjKLFoA5ZIOsrJKDIAGfBiuhmRmFgVkZhY3kITBgVr8H2wImJNRfIAUDDTkAsgAoN7zYFeQAvLz8wVABoA0g9hQYeLAENUMAkCNG8jWDAKgqMaumYEBAB5ve4AwYBoCAAAAAElFTkSuQmCC") center center no-repeat;    cursor: pointer;}
 </style>
 </head>
 <body>
