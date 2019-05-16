@@ -140,7 +140,9 @@ class imageDragAuth
         
         $imgCrop = imagecrop($background, array('x' => (int)($_SESSION[$this->sessionXname]),'y' => (int)($_SESSION[$this->sessionYname]), 'width' => $smX, 'height' => $smY));
         
+        imagealphablending($imgCrop,true);
         imagecolortransparent($imgCrop,$this->colorTransparentInt);
+        imagesavealpha($imgCrop ,false);
         imagepng($imgCrop);
         imagedestroy($imgCrop);
     }
