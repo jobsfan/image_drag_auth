@@ -12,4 +12,4 @@ php image drag auth plugin, php写的图片拖动验证插件
 
 ## 应用Demo ##  
 zf3框架下的实现[结合redis，应对更高的并发] https://www.5jitang.com/api/imagedragauth/demo   
-yaf框架下也有实现[结合redis，应对更高的并发]，不过是公司项目，不方便贴在这里
+yaf框架下也有实现[结合redis，应对更高的并发]，不过是公司项目，不方便贴在这里。
