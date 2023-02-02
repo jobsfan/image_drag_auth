@@ -13,6 +13,13 @@ php image drag auth plugin, php写的图片拖动验证插件
 ## 应用Demo ##  
 zf3框架下的实现[结合redis，应对更高的并发]  
 yaf框架下也有实现[结合redis，应对更高的并发]，不过是公司项目，不方便贴在这里。  
-之前的放demo的网站出售掉了，最近用go+原生js重新写了一遍，地址是 https://www.yuceai.com/rotate/rotate.html 依赖更少了。
+之前的放demo的网站出售掉了，go+原生js重新写了一遍，地址是 https://www.yuceai.com/rotate/rotate.html 依赖更少了。  
+
+## 有问题和我交流 ##  
+
+抖音：  
+<img width="280" height="280" src="https://www.yuceai.com/img/zanshang/douyin.png"/>
 
 ## 赞赏多少是您的心意，感谢支持！ ##  
+微信赞赏码： <img width="200" height="200" src="https://www.yuceai.com/img/zanshang/weixinzanshang.png"/>
+支付宝赞助码： <img width="200" height="200" src="https://www.yuceai.com/img/zanshang/alipay.png"/>
