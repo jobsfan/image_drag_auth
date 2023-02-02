@@ -13,7 +13,7 @@ php image drag auth plugin, php写的图片拖动验证插件, php写的滑动�
 ## 四、应用Demo ##  
 zf3框架下的实现[结合redis，应对更高的并发]    
 yaf框架下也有实现[结合redis，应对更高的并发]   
-之前的放demo的网站出售掉了，go+原生js重新写了一遍，地址是 https://www.yuceai.com/rotate/rotate.html 无依赖。  
+之前的放demo的网站出售掉了，go+原生js重写，地址是 https://www.yuceai.com/rotate/rotate.html 无依赖。  
 
 ## 五、成品源码赞赏后获得 ##  
 * 滑动拼图验证yaf版源码 50  
