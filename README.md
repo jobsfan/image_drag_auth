@@ -11,5 +11,6 @@ php image drag auth plugin, php写的图片拖动验证插件
 图片拖动验证的本质是分步验证！ 所以在调用validation方法的时候，需要传一个第二步验证的session名，默认session名是setpSession，在提交之后在你自己的后续逻辑里面需要对setpSession进行验证，验证成功之后需要及时把它设置unset掉，或者设置成false，否则就会形成第二次提交无需验证的漏洞。
 
 ## 应用Demo ##  
-zf3框架下的实现[结合redis，应对更高的并发] https://www.5jitang.com/api/imagedragauth/demo   
+zf3框架下的实现[结合redis，应对更高的并发]  
 yaf框架下也有实现[结合redis，应对更高的并发]，不过是公司项目，不方便贴在这里。
+之前的放demo的网站出售掉了，最近用go+原生js重新写了一遍，地址是 https://www.yuceai.com/rotate/rotate.html 依赖更少了。
